@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6">
+    <h1 class="fw-bold mb-3">Sign up</h1>
+
+    <% if @user.errors.any? %>
+      <h3 class="fw-bold">
+        <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+      </h3>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_with model: @user, url: users_path do |f| %>
+      <div class="mb-3">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, class: "form-control", autofocus: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :email_address, "Email" %>
+        <%= f.email_field :email_address, class: "form-control" %>
+      </div>
+
+      <div class="mb-2">
+        <%= f.label :password, "Password" %>
+        <div class="text-muted fst-italic">(6 characters minimum)</div>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation, "Password confirmation" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+
+      <%= f.submit "Sign up", class: "btn btn-success" %>
+    <% end %>
+
+    <div class="mt-2">
+      <%= link_to "Log in", new_session_path %>
+    </div>
+  </div>
+</div>
+

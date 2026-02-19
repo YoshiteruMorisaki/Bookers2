@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6">
+    <h1 class="fw-bold mb-3">Log in</h1>
+
+    <%= form_with url: new_session_path, method: :post do %>
+      <div class="mb-3">
+        <%= label_tag :name, "Name" %>
+        <%= text_field_tag :name, params[:name], class: "form-control", autofocus: true %>
+      </div>
+
+      <div class="mb-2">
+        <%= label_tag :password, "Password" %>
+        <%= password_field_tag :password, nil, class: "form-control" %>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= check_box_tag :remember_me, "1", false, class: "form-check-input", id: "remember_me" %>
+        <%= label_tag :remember_me, "Remember me", class: "form-check-label" %>
+      </div>
+
+      <%= submit_tag "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <div class="mt-2">
+      <%= link_to "Sign up", new_user_path %><br>
+      <%= link_to "Forgot your password?", new_password_path %>
+    </div>
+  </div>
+</div>
