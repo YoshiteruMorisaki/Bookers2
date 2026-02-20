@@ -3,15 +3,15 @@ Rails.application.routes.draw do
   root "homes#top"
   get "homes/about", to: "homes#about", as: :about
 
-  resources :users, only: [:new, :create, :index, :show, :edit, :update], path_names: {new: "sign_up"}
-
   get "users/sign_in", to: "sessions#new", as: :new_session
   post "users/sign_in", to: "sessions#create", as: :session
   delete "users/sign_out", to: "sessions#destroy", as: :destroy_session
 
+  resources :users, only: %i[new create index show edit update], path_names: { new: "sign_up" }
+
   resources :passwords, param: :token, path: "users/password"
 
-  resources :books, only: [:index, :create, :show, :edit, :update :destroy]
+  resources :books, only: [:index, :create, :show, :edit, :update, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

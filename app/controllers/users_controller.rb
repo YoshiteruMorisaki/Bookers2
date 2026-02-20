@@ -8,12 +8,32 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @books = @user.books.order(created_at: :desc)
+    @book  = Book.new
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(current_user), notice: 'Welcome! You have signed up successfully.'
+      redirect_to user_path(@user), notice: 'Welcome! You have signed up successfully.'
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def index
+    @users = User.order(:id)
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "更新しました"
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
