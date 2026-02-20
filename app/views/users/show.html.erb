@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <%= render "shared/sidebar", user: @user, book: @book, context: "user_show" %>
+    </div>
+
+    <div class="col-md-8">
+      <h2>Books</h2>
+
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th style="width: 120px;"></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th style="width: 180px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |b| %>
+            <tr>
+              <td>
+                <div class="border bg-light d-flex align-items-center justify-content-center" style="width: 90px; height: 60px;">
+                  <span class="text-muted small">NO IMAGE</span>
+                </div>
+              </td>
+              <td><%= link_to b.title, book_path(b) %></td>
+              <td><%= b.body %></td>
+              <td class="text-end">
+                <%= link_to "Edit", edit_book_path(b), class: "btn btn-success btn-sm" %>
+                <%= link_to "Destroy", book_path(b),
+                            data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+                            class: "btn btn-danger btn-sm ms-2" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
