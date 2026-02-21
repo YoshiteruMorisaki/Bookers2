@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   root "homes#top"
-  get "homes/about", to: "homes#about", as: :about
+  get "home/about", to: "homes#about", as: :about
 
-  get "users/sign_in", to: "sessions#new", as: :new_session
-  post "users/sign_in", to: "sessions#create", as: :session
+  get "session/new", to: "sessions#new", as: :new_session
+  post "session/new", to: "sessions#create", as: :session
   delete "users/sign_out", to: "sessions#destroy", as: :destroy_session
 
   resources :users, only: %i[new create index show edit update], path_names: { new: "sign_up" }

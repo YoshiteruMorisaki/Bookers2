@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = @book.user
     @book_new = Book.new
   end
 
@@ -44,7 +44,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to user_path(current_user), notice: "Book deleted."
+    redirect_to books_path, notice: "Book deleted."
   end
 
   private
@@ -55,7 +55,7 @@ class BooksController < ApplicationController
 
   def is_maching_user
     unless @book.user == current_user
-      redirect_to book_path(@book), alert: "You don't have permission to access."
+      redirect_to books_path, alert: "You don't have permission to access."
     end
   end
 
