@@ -23,7 +23,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.order(:id)
+    @user  = current_user
+    @book  = Book.new
+    @users = User.all
   end
 
   def edit
@@ -31,7 +33,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "更新しました"
+      redirect_to user_path(current_user), notice: "You have updated user successfully."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,12 +46,12 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email_address, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :introduction, :profile_image)
   end
 
   def is_matching_login_user
     unless @user == current_user
-      redirect_to user_path(current_user), alert: "権限がありません"
+      redirect_to user_path(current_user), alert: "You don't have permission to access."
     end
   end
 

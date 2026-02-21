@@ -11,8 +11,8 @@
         <tbody>
           <tr>
             <td style="width: 140px;">
-              <div class="border bg-light d-flex align-items-center justify-content-center" style="width: 110px; height: 80px;">
-                <span class="text-muted small">NO IMAGE</span>
+              <div class="d-flex align-items-center justify-content-center">
+                <%= profile_image_tag(@book.user, size: 100) %>
               </div>
               <div class="mt-2"><%= @book.user.name %></div>
             </td>

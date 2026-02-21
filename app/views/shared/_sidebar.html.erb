@@ -1,8 +1,9 @@
 <h2>User info</h2>
 
-<div class="border bg-light d-flex align-items-center justify-content-center mb-3" style="height: 160px;">
-  <span class="text-muted small">NO IMAGE</span>
-</div>
+<div class="border bg-light d-flex align-items-center justify-content-center"
+                    style="width: 100px; height: 100px;">
+                  <%= profile_image_tag(user, size: 100) %>
+                </div>
 
 <table class="table">
   <tbody>
@@ -46,7 +47,6 @@
   <div class="mb-3">
     <%= f.label :body, "Opinion", class: "form-label" %>
     <%= f.text_area :body, class: "form-control", rows: 4 %>
-    <div class="form-text">最大200文字</div>
   </div>
 
   <%= f.submit "Create Book", class: "btn btn-success" %>

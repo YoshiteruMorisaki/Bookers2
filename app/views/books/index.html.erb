@@ -20,8 +20,8 @@
           <% @books.each do |b| %>
             <tr>
               <td>
-                <div class="border bg-light d-flex align-items-center justify-content-center" style="width: 90px; height: 60px;">
-                  <span class="text-muted small">NO IMAGE</span>
+                <div class="d-flex align-items-center justify-content-center">
+                  <%= profile_image_tag(b.user, size: 60) %>
                 </div>
               </td>
               <td><%= link_to b.title, book_path(b) %></td>

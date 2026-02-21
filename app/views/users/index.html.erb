@@ -1,5 +1,9 @@
 <div class="container mt-4">
   <div class="row g-4">
+    <div class="col-md-4">
+      <%= render "shared/sidebar", user: @user, book: @book, context: "users_index" %>
+    </div>
+
     <div class="col-md-8">
       <h2>Users</h2>
 
@@ -15,7 +19,7 @@
         <tbody>
           <% @users.each do |u| %>
             <tr>
-              <td><%= profile_image_tag(u, size: 100) %></td>
+              <td><%= profile_image_tag(u, size: 60) %></td>
               <td><%= u.name %></td>
               <td><%= link_to "Show", user_path(u) %></td>
             </tr>

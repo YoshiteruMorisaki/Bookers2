@@ -31,35 +31,15 @@
   <body class="d-flex flex-column min-vh-100">
 
   <header class="navbar navbar-expand bg-dark navbar-dark py-3">
-    <div class="container">
+  <div class="container">
+    <% if current_user.present? %>
+      <%= link_to "Bookers", user_path(current_user), class: "navbar-brand fw-bold fs-4" %>
+      <%= render "shared/header_signed_in" %>
+    <% else %>
       <%= link_to "Bookers", root_path, class: "navbar-brand fw-bold fs-4" %>
-
-      <ul class="navbar-nav ms-auto align-items-center gap-3">
-        <li class="nav-item">
-          <%= link_to root_path, class: "nav-link d-flex align-items-center gap-2" do %>
-            <i class="fa-solid fa-house"></i><span>Home</span>
-          <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to about_path, class: "nav-link d-flex align-items-center gap-2" do %>
-            <i class="fa-solid fa-link"></i><span>About</span>
-          <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to new_user_path, class: "nav-link d-flex align-items-center gap-2" do %>
-            <i class="fa-solid fa-user-plus"></i><span>Sign up</span>
-          <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to new_session_path, class: "nav-link d-flex align-items-center gap-2" do %>
-            <i class="fa-solid fa-right-to-bracket"></i><span>Log in</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+      <%= render "shared/header_signed_out" %>
+    <% end %>
+  </div>
   </header>
 
   <main class="flex-grow-1">

@@ -20,17 +20,20 @@
           <% @books.each do |b| %>
             <tr>
               <td>
-                <div class="border bg-light d-flex align-items-center justify-content-center" style="width: 90px; height: 60px;">
-                  <span class="text-muted small">NO IMAGE</span>
+                <div class="border bg-light d-flex align-items-center justify-content-center"
+                    style="width: 60px; height: 60px;">
+                  <%= profile_image_tag(b.user, size: 60) %>
                 </div>
               </td>
               <td><%= link_to b.title, book_path(b) %></td>
               <td><%= b.body %></td>
               <td class="text-end">
-                <%= link_to "Edit", edit_book_path(b), class: "btn btn-success btn-sm" %>
-                <%= link_to "Destroy", book_path(b),
-                            data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
-                            class: "btn btn-danger btn-sm ms-2" %>
+                  <% if b.user == current_user %>
+                    <%= link_to "Edit", edit_book_path(b), class: "btn btn-success btn-sm" %>
+                    <%= link_to "Destroy", book_path(b),
+                                data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+                                class: "btn btn-danger btn-sm ms-2" %>
+                  <% end %>
               </td>
             </tr>
           <% end %>

@@ -55,7 +55,7 @@ class BooksController < ApplicationController
 
   def is_maching_user
     unless @book.user == current_user
-      redirect_to book_path(@book), alert: "権限がありません"
+      redirect_to book_path(@book), alert: "You don't have permission to access."
     end
   end
 
