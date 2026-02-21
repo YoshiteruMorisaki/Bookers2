@@ -1,24 +1,35 @@
-# README
+# DMM WEBCAMP アプリケーションを作成しよう2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+3つ目の提出課題であるBookers2のリポジトリです。
 
-Things you may want to cover:
+---
 
-* Ruby version
+# Bookers2
 
-* System dependencies
+Bookers同様に本の感想を投稿できるアプリです。
 
-* Configuration
+---
 
-* Database creation
+# 機能
 
-* Database initialization
+- 標準認証機能によるサインアップ、ログイン・ログアウト
+- 新規投稿および投稿内容の編集・削除
+- 登録ユーザーによる投稿内容の一覧とその詳細画面
+- プロフィール画像を含むユーザーの詳細設定
 
-* How to run the test suite
+---
 
-* Services (job queues, cache servers, search engines, etc.)
+# 使用技術
 
-* Deployment instructions
+- Ruby on Rails 8
+- Bootstrap 5
+- Active Storage
+- RSpec
 
-* ...
+---
+
+# 今後追加予定
+
+- いいね機能
+- コメント機能
+- ページネーション
