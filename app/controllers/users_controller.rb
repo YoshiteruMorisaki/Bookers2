@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-
-  allow_unauthenticated_access only: %i[ new create ]
-  before_action :identify_user, only: %i[show edit update]
-  before_action :is_matching_login_user, only: %i[edit update]
+  allow_unauthenticated_access only: %i[new create]
+  before_action :set_user, only: %i[show edit update]
+  before_action :authorize_user!, only: %i[edit update]
 
   def new
     @user = User.new
@@ -24,17 +23,16 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user  = current_user
-    @book  = Book.new
+    @user = current_user
+    @book = Book.new
     @users = User.all
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(current_user), notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "You have updated user successfully."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +40,7 @@ class UsersController < ApplicationController
 
   private
 
-  def identify_user
+  def set_user
     @user = User.find(params[:id])
   end
 
@@ -50,10 +48,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :introduction, :profile_image)
   end
 
-  def is_matching_login_user
-    unless @user == current_user
-      redirect_to user_path(current_user), alert: "You don't have permission to access."
-    end
-  end
+  def authorize_user!
+    return if @user == current_user
 
+    redirect_to user_path(current_user), alert: "You don't have permission to access."
+  end
 end
