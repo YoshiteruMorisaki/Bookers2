@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :passwords, param: :token, path: "users/password"
 
-  resources :books, only: [:index, :create, :show, :edit, :update, :destroy]
+  resources :books do
+    resources :favorites, only: %i[create destroy]
+    resources :book_comments, only: %i[create destroy]
+  end
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,0 +1,19 @@
+<%# locals: book %>
+
+<% if current_user.favorited?(book) %>
+  <% favorite = current_user.favorite_for(book) %>
+
+  <%= link_to book_favorite_path(book, favorite),
+              data: { turbo_method: :delete },
+              class: "text-decoration-none" do %>
+    <i class="fa-solid fa-heart text-danger"></i>
+    <%= book.favorites.size %>
+  <% end %>
+<% else %>
+  <%= link_to book_favorites_path(book),
+              data: { turbo_method: :post },
+              class: "text-decoration-none" do %>
+    <i class="fa-solid fa-heart text-primary"></i>
+    <%= book.favorites.size %>
+  <% end %>
+<% end %>

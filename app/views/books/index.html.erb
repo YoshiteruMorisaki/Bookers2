@@ -5,33 +5,47 @@
     </div>
 
     <div class="col-md-8 offset-md-1">
-      <h2>Books</h2>
+      <h2 class="mb-3">Books</h2>
 
-      <table class="table align-middle">
-        <thead>
-          <tr>
-            <th style="width: 120px;"></th>
-            <th>Title</th>
-            <th>Opinion</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @books.each do |b| %>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
             <tr>
-              <td>
-                <div class="d-flex align-items-center justify-content-center">
-                  <%= link_to user_path(b.user) do %>
-                    <%= profile_image_tag(b.user, size: 60) %>
-                  <% end %>
-                </div>
-              </td>
-              <td><%= link_to b.title, book_path(b) %></td>
-              <td><%= b.body %></td>
+              <th style="width: 120px;"></th>
+              <th>Title</th>
+              <th>Opinion</th>
+              <th class="text-nowrap" style="width: 120px;">Likes</th>
+              <th class="text-nowrap" style="width: 180px;">Comments</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            <% @books.each do |b| %>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <%= link_to user_path(b.user) do %>
+                      <%= profile_image_tag(b.user, size: 60) %>
+                    <% end %>
+                  </div>
+                </td>
+
+                <td><%= link_to b.title, book_path(b) %></td>
+                <td><%= b.body %></td>
+
+                <td class="text-nowrap">
+                  <%= render "favorites/button", book: b %>
+                </td>
+
+                <td class="text-nowrap">
+                  コメント数: <%= b.book_comments.size %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>

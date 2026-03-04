@@ -11,6 +11,8 @@ class BooksController < ApplicationController
   def show
     @user = @book.user
     @book_new = Book.new
+    @book_comment = BookComment.new
+    @book_comments = @book.book_comments.includes(:user).order(created_at: :desc)
   end
 
   def create
